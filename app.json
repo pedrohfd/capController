@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "capController",
+    "slug": "capController",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
