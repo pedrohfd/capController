@@ -1,7 +1,8 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
-interface StoriesProps {
+export interface StoriesProps {
   name: string
   link: string
   cap: number
@@ -27,6 +28,7 @@ export const useCapStore = create<CapStore>()(
     }),
     {
       name: 'cap-storage',
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 )
