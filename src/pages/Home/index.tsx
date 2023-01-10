@@ -39,7 +39,10 @@ export const Home = () => {
           <AddButtonIcon width={17} height={17} />
         </AddButton>
 
-        <List data={stories} renderItem={item => <Item />} />
+        <List
+          data={stories}
+          renderItem={({ item }: any) => <Item item={item} />}
+        />
 
         <Modal
           isVisible={isModalVisible}
