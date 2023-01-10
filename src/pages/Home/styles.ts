@@ -11,6 +11,8 @@ export const Content = styled.View`
   flex: 1;
 `
 
+export const List = styled.FlatList``
+
 export const AddButton = styled.TouchableOpacity`
   position: absolute;
 

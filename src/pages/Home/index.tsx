@@ -4,6 +4,7 @@ import {
   AddButton,
   Container,
   Content,
+  List,
   ModalButton,
   ModalButtonText,
   ModalContent,
@@ -11,29 +12,58 @@ import {
 } from './styles'
 import AddButtonIcon from '../../assets/addButton.svg'
 import Modal from 'react-native-modal'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { useHomeController } from './controller'
+import { StoriesProps } from '../../store/cap.store'
+import { Item } from '../../components/Item'
 
 export const Home = () => {
-  const { handleAddStory } = useHomeController()
+  const {
+    handleAddStory,
+    isModalVisible,
+    handleToggleModal,
+    setCap,
+    setLink,
+    setName,
+    cap,
+    link,
+    name,
+    stories,
+  } = useHomeController()
 
   return (
     <Container>
       <StatusBar style='light' hidden />
       <Content>
-        <AddButton>
+        <AddButton onPress={handleToggleModal}>
           <AddButtonIcon width={17} height={17} />
         </AddButton>
 
+        <List data={stories} renderItem={item => <Item />} />
+
         <Modal
-          isVisible
+          isVisible={isModalVisible}
+          onBackdropPress={handleToggleModal}
           style={{ justifyContent: 'center', alignItems: 'center' }}
         >
           <ModalContent>
             <View>
-              <ModalInput placeholder='Nome' />
-              <ModalInput placeholder='Link' />
-              <ModalInput placeholder='Capítulo atual' keyboardType='numeric' />
+              <ModalInput
+                placeholder='Nome'
+                onChangeText={setName}
+                value={name}
+              />
+              <ModalInput
+                placeholder='Link'
+                onChangeText={setLink}
+                value={link}
+              />
+              <ModalInput
+                placeholder='Capítulo atual'
+                keyboardType='numeric'
+                onChangeText={setCap}
+                value={cap}
+              />
             </View>
 
             <ModalButton onPress={handleAddStory}>
