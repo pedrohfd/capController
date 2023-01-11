@@ -7,7 +7,7 @@ import { StoriesProps, useCapStore } from '../../store/cap.store'
 import * as Linking from 'expo-linking'
 
 export const useItemController = (item: StoriesProps, index: number) => {
-  const { addCap, removeCap } = useCapStore()
+  const { addCap, removeCap, removeStory, readStory } = useCapStore()
   const swipeRef = useRef<any>()
 
   const openLink = () => {
@@ -23,7 +23,10 @@ export const useItemController = (item: StoriesProps, index: number) => {
 
     return (
       <LeftButton
-        onPress={() => swipeRef?.current?.close()}
+        onPress={() => {
+          swipeRef?.current?.close()
+          readStory(index)
+        }}
         style={{ transform: [{ scale: scale }] }}
       >
         {!item.read && <CompleteIcon width={24} />}
@@ -43,6 +46,7 @@ export const useItemController = (item: StoriesProps, index: number) => {
       <RightButton
         onPress={() => {
           swipeRef?.current?.close()
+          removeStory(index)
         }}
         style={{ transform: [{ scale: scale }] }}
       >

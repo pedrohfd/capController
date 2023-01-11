@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useCapStore } from '../../store/cap.store'
 
 export const useHomeController = () => {
-  const { addStory, showStories, stories } = useCapStore()
+  const { addStory, stories } = useCapStore()
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
   const [cap, setCap] = useState('')
@@ -14,7 +14,6 @@ export const useHomeController = () => {
     addStory({ name, link, cap: Number(cap), read: false })
 
     resetStates()
-    // showStories()
     handleToggleModal()
   }
 

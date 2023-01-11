@@ -5,6 +5,7 @@ import {
   CapArea,
   CapText,
   Container,
+  ReadText,
   RemoveButton,
   Slide,
   SlideContent,
@@ -43,22 +44,27 @@ export const Item = ({
           <SlideContent>
             <Title>{item.name}</Title>
 
-            <CapArea>
-              <RemoveButton onPress={decrementCap}>
-                <RemoveIcon width={24} />
-              </RemoveButton>
+            {item.read ? (
+              <ReadText>Lido</ReadText>
+            ) : (
+              <CapArea>
+                <RemoveButton onPress={decrementCap}>
+                  <RemoveIcon width={24} />
+                </RemoveButton>
 
-              <CapText>{item.cap}</CapText>
+                <CapText>{item.cap}</CapText>
 
-              <AddButton onPress={incrementCap}>
-                <AddIcon width={24} />
-              </AddButton>
-            </CapArea>
+                <AddButton onPress={incrementCap}>
+                  <AddIcon width={24} />
+                </AddButton>
+              </CapArea>
+            )}
           </SlideContent>
         </Slide>
 
         <ToReadButton onPress={openLink}>
-          <ToReadText>Ler</ToReadText>
+          {!item.read && <ToReadText>Ler</ToReadText>}
+          {item.read && <ToReadText>Ler novamente</ToReadText>}
         </ToReadButton>
       </Container>
     </GestureHandlerRootView>

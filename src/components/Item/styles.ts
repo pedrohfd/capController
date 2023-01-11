@@ -30,6 +30,13 @@ export const Title = styled.Text`
   width: 190px;
 `
 
+export const ReadText = styled.Text`
+  font-size: 16px;
+  font-family: ${fonts.regular};
+
+  color: ${colors.gray};
+`
+
 export const LeftButton = styled.TouchableOpacity`
   margin-right: 40px;
   align-items: center;

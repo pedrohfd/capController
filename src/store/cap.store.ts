@@ -14,7 +14,8 @@ interface CapStore {
   addStory: (story: StoriesProps) => void
   addCap: (index: number) => void
   removeCap: (index: number) => void
-  showStories: () => void
+  removeStory: (index: number) => void
+  readStory: (index: number) => void
 }
 
 export const useCapStore = create<CapStore>()(
@@ -49,7 +50,26 @@ export const useCapStore = create<CapStore>()(
 
         set({ stories: newStories })
       },
-      showStories: () => console.log(get().stories),
+      removeStory: index => {
+        const stories = get().stories
+
+        const newStories = stories.filter(item => item !== stories[index])
+
+        set({ stories: newStories })
+      },
+      readStory: index => {
+        const stories = get().stories
+
+        const newStories = stories.map(item => {
+          if (item === stories[index]) {
+            return { ...item, read: !item.read }
+          }
+
+          return item
+        })
+
+        set({ stories: newStories })
+      },
     }),
     {
       name: 'cap-storage',
