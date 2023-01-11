@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useCapStore } from '../../store/cap.store'
 
 export const useHomeController = () => {
-  const { addStorie, showStories, stories } = useCapStore()
+  const { addStory, showStories, stories } = useCapStore()
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
   const [cap, setCap] = useState('')
@@ -11,7 +11,7 @@ export const useHomeController = () => {
   const handleAddStory = () => {
     if (!name || !link || !cap) return
 
-    addStorie({ name, link, cap: Number(cap) })
+    addStory({ name, link, cap: Number(cap), read: false })
 
     resetStates()
     showStories()

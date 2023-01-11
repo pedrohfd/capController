@@ -9,6 +9,7 @@ export const Container = styled(SafeAreaView)`
 export const Content = styled.View`
   background: ${colors.black};
   flex: 1;
+  padding: 0 30px;
 `
 
 export const List = styled.FlatList``
@@ -16,8 +17,8 @@ export const List = styled.FlatList``
 export const AddButton = styled.TouchableOpacity`
   position: absolute;
 
-  bottom: 40px;
-  right: 40px;
+  bottom: 16px;
+  right: 16px;
 
   width: 71px;
   height: 71px;

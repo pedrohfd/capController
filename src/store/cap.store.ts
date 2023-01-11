@@ -6,11 +6,12 @@ export interface StoriesProps {
   name: string
   link: string
   cap: number
+  read: boolean
 }
 
 interface CapStore {
   stories: StoriesProps[]
-  addStorie: (story: StoriesProps) => void
+  addStory: (story: StoriesProps) => void
   addCap: () => void
   removeCap: () => void
   showStories: () => void
@@ -20,8 +21,7 @@ export const useCapStore = create<CapStore>()(
   persist(
     (set, get) => ({
       stories: [],
-      addStorie: story =>
-        set(state => ({ stories: [...state.stories, story] })),
+      addStory: story => set(state => ({ stories: [...state.stories, story] })),
       addCap: () => {},
       removeCap: () => {},
       showStories: () => console.log(get().stories),

@@ -12,10 +12,10 @@ import {
 } from './styles'
 import AddButtonIcon from '../../assets/addButton.svg'
 import Modal from 'react-native-modal'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { useHomeController } from './controller'
-import { StoriesProps } from '../../store/cap.store'
 import { Item } from '../../components/Item'
+import { colors } from '../../styles/colors'
 
 export const Home = () => {
   const {
@@ -33,15 +33,14 @@ export const Home = () => {
 
   return (
     <Container>
-      <StatusBar style='light' hidden />
+      <StatusBar style='light' backgroundColor={colors.black} />
       <Content>
-        <AddButton onPress={handleToggleModal}>
-          <AddButtonIcon width={17} height={17} />
-        </AddButton>
-
         <List
           data={stories}
           renderItem={({ item }: any) => <Item item={item} />}
+          showsVerticalScrollIndicator={false}
+          alwaysBounceVertical={false}
+          ListFooterComponent={<View style={{ height: 20 }} />}
         />
 
         <Modal
@@ -75,6 +74,22 @@ export const Home = () => {
           </ModalContent>
         </Modal>
       </Content>
+      <AddButton
+        onPress={handleToggleModal}
+        style={{
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+
+          elevation: 5,
+        }}
+      >
+        <AddButtonIcon width={17} height={17} />
+      </AddButton>
     </Container>
   )
 }
