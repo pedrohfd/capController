@@ -37,7 +37,9 @@ export const Home = () => {
       <Content>
         <List
           data={stories}
-          renderItem={({ item }: any) => <Item item={item} />}
+          renderItem={({ item, index }: any) => (
+            <Item item={item} index={index} />
+          )}
           showsVerticalScrollIndicator={false}
           alwaysBounceVertical={false}
           ListFooterComponent={<View style={{ height: 20 }} />}

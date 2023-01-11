@@ -3,10 +3,16 @@ import DeleteIcon from '../../assets/trash.svg'
 import ReloadIcon from '../../assets/reload.svg'
 import { useRef } from 'react'
 import { LeftButton, RightButton } from './styles'
-import { StoriesProps } from '../../store/cap.store'
+import { StoriesProps, useCapStore } from '../../store/cap.store'
+import * as Linking from 'expo-linking'
 
-export const useItemController = (item: StoriesProps) => {
+export const useItemController = (item: StoriesProps, index: number) => {
+  const { addCap, removeCap } = useCapStore()
   const swipeRef = useRef<any>()
+
+  const openLink = () => {
+    Linking.openURL(item.link)
+  }
 
   const leftActions = (progress, dragX) => {
     const scale = dragX.interpolate({
@@ -35,7 +41,9 @@ export const useItemController = (item: StoriesProps) => {
 
     return (
       <RightButton
-        onPress={() => swipeRef?.current?.close()}
+        onPress={() => {
+          swipeRef?.current?.close()
+        }}
         style={{ transform: [{ scale: scale }] }}
       >
         <DeleteIcon width={24} />
@@ -43,5 +51,20 @@ export const useItemController = (item: StoriesProps) => {
     )
   }
 
-  return { leftActions, rightActions, swipeRef }
+  const incrementCap = () => {
+    addCap(index)
+  }
+
+  const decrementCap = () => {
+    removeCap(index)
+  }
+
+  return {
+    leftActions,
+    rightActions,
+    swipeRef,
+    openLink,
+    incrementCap,
+    decrementCap,
+  }
 }

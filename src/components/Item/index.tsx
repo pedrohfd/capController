@@ -16,8 +16,21 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import AddIcon from '../../assets/add.svg'
 import RemoveIcon from '../../assets/remove.svg'
 
-export const Item = ({ item }: { item: StoriesProps }) => {
-  const { leftActions, rightActions, swipeRef } = useItemController(item)
+export const Item = ({
+  item,
+  index,
+}: {
+  item: StoriesProps
+  index: number
+}) => {
+  const {
+    leftActions,
+    rightActions,
+    swipeRef,
+    openLink,
+    incrementCap,
+    decrementCap,
+  } = useItemController(item, index)
 
   return (
     <GestureHandlerRootView>
@@ -31,20 +44,20 @@ export const Item = ({ item }: { item: StoriesProps }) => {
             <Title>{item.name}</Title>
 
             <CapArea>
-              <RemoveButton>
+              <RemoveButton onPress={decrementCap}>
                 <RemoveIcon width={24} />
               </RemoveButton>
 
               <CapText>{item.cap}</CapText>
 
-              <AddButton>
+              <AddButton onPress={incrementCap}>
                 <AddIcon width={24} />
               </AddButton>
             </CapArea>
           </SlideContent>
         </Slide>
 
-        <ToReadButton>
+        <ToReadButton onPress={openLink}>
           <ToReadText>Ler</ToReadText>
         </ToReadButton>
       </Container>

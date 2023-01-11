@@ -14,7 +14,7 @@ export const useHomeController = () => {
     addStory({ name, link, cap: Number(cap), read: false })
 
     resetStates()
-    showStories()
+    // showStories()
     handleToggleModal()
   }
 

@@ -12,8 +12,8 @@ export interface StoriesProps {
 interface CapStore {
   stories: StoriesProps[]
   addStory: (story: StoriesProps) => void
-  addCap: () => void
-  removeCap: () => void
+  addCap: (index: number) => void
+  removeCap: (index: number) => void
   showStories: () => void
 }
 
@@ -22,8 +22,33 @@ export const useCapStore = create<CapStore>()(
     (set, get) => ({
       stories: [],
       addStory: story => set(state => ({ stories: [...state.stories, story] })),
-      addCap: () => {},
-      removeCap: () => {},
+      addCap: index => {
+        const stories = get().stories
+
+        const newStories = stories.map(item => {
+          if (item === stories[index]) {
+            return { ...item, cap: item.cap + 1 }
+          }
+
+          return item
+        })
+
+        set({ stories: newStories })
+      },
+      removeCap: index => {
+        const stories = get().stories
+
+        const newStories = stories.map(item => {
+          if (item === stories[index]) {
+            if (item.cap === 0) return item
+            return { ...item, cap: item.cap - 1 }
+          }
+
+          return item
+        })
+
+        set({ stories: newStories })
+      },
       showStories: () => console.log(get().stories),
     }),
     {
