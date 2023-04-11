@@ -3,8 +3,15 @@
     "name": "capController",
     "slug": "capController",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "bundleIdentifier": "com.capController",
+      "buildNumber": "1.0.0"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cf388013-615a-4a99-a128-23febbf54fb4"
+      }
+    }
   }
 }

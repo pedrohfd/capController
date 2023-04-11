@@ -9,7 +9,7 @@ export const Container = styled(SafeAreaView)`
 export const Content = styled.View`
   background: ${colors.black};
   flex: 1;
-  padding: 0 30px;
+  padding: 60px 30px 0;
 `
 
 export const List = styled.FlatList``

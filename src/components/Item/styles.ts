@@ -51,6 +51,7 @@ export const RightButton = styled.TouchableOpacity`
 
 export const CapArea = styled.View`
   flex-direction: row;
+  align-items: center;
 `
 
 export const AddButton = styled.TouchableOpacity`
