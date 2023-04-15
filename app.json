@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.capController",
+      "bundleIdentifier": "io.codemagic.sample.reactnative",
       "buildNumber": "1.0.0"
     },
     "extra": {
