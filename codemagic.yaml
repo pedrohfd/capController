@@ -1,16 +1,20 @@
 workflows:
   my-workflow:
     scripts:
-      - name: Add provisioning profiles
-        script: |
-          set -e # exit on first failed command
-
-          PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
-          mkdir -p "$PROFILES_HOME"
-          echo ${PROVISIONING_PROFILE?} | base64 --decode > "$PROFILES_HOME/$(uuidgen).mobileprovision"
-      - name: Build ipa for distribution
-        script: xcode-project build-ipa \
-                    --workspace "${XCODE_WORKSPACE?}" \
-                    --scheme "${XCODE_SCHEME?}"
-    artifacts:
-      - build/ios/ipa/*.ipa
+    - name: Build the .app
+      script: | 
+        # build using workspace
+        xcodebuild build \
+          -workspace "MyXcodeWorkspace.xcworkspace" \
+          -scheme "MyScheme" \
+          CODE_SIGN_INDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+        #
+        # build using project
+        # xcodebuild build \
+        #    -project ""MyXcodeProject.xcodeproj" \
+        #    -scheme "MyScheme" \
+        #    CODE_SIGN_INDENTITY="" \
+        #    CODE_SIGNING_REQUIRED=NO \
+        #    CODE_SIGNING_ALLOWED=NO
